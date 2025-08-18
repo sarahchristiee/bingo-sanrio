@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>Bingo!</title>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="./index.html"> Sorteador</a>
+    <a href="./cartela.html"> Cartela</a>
+    <a href="../hellokitty/index.html">Hello Kitty</a>
+    <a href="../kuromi/index.html">Kuromi</a>
+    <a href="../cinamonroll/index.html">Cinamonroll</a>
+    <a href="#">Keroppi</a>
+  </nav>
+  <!-- Card principal -->
+  <div class="cardSorteador">
+    <img src="hello.png" alt="Hello Kitty" class="hello">
+    <h1>SORTEADOR</h1>
+
+    <div class="controls">
+      <button id="btnDraw">Sortear novo número</button>
+    </div>
+
+    <div class="current">
+      <div id="currentNumber" class="number">—</div>
+    </div>
+  </div>
+
+  <!-- Números sorteados -->
+  <div class="list">
+    <h3>Números Sorteados</h3>
+    <div id="nums" aria-live="polite"></div>
+  </div>
+
+</body>
+</html>
