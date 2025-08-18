@@ -8,9 +8,9 @@ let drawn = new Set();
 const $ = (sel) => document.querySelector(sel);
 
 // pega os elementos da página
-const btnDraw = $("#btnDraw");         // botão "sortear"
+const btnDraw = $("#btnDraw");           // botão "sortear"
 const currentNumber = $("#currentNumber"); // mostra o último número sorteado
-const balls = $("#balls");             // área que mostra as bolinhas já sorteadas
+const nums = $("#nums");                 // área que mostra as bolinhas já sorteadas
 
 // função que retorna a letra do bingo de acordo com o número
 function getLetter(n) {
@@ -23,38 +23,28 @@ function getLetter(n) {
 
 // inicia o jogo
 function init() {
-  // cria um array com números de 1 até 75
   pool = Array.from({ length: 75 }, (_, i) => i + 1);
-
-  // limpa os sorteados
   drawn.clear();
-
-  // limpa o número atual
   currentNumber.textContent = "—";
-
-  // renderiza (mostra) as bolinhas sorteadas (vazio no começo)
-  renderBalls();
-
-  // habilita o botão de sortear
+  renderNums();
   btnDraw.disabled = false;
 }
 
-// mostra na tela todas as bolinhas já sorteadas
-function renderBalls() {
-  balls.innerHTML = ""; // limpa
-  [...drawn].sort((a, b) => a - b).forEach(n => {
-    const div = document.createElement("div");
-    const letter = getLetter(n);
-    div.className = "ball"; 
-    div.textContent = `${letter}${n}`;
-    balls.appendChild(div);
-  });
+// mostra na tela todas as bolinhas já sorteadas, em ordem crescente
+function renderNums() {
+  nums.innerHTML = ""; // limpa a lista
+  [...drawn]
+    .sort((a, b) => a - b)
+    .forEach(n => {
+      const div = document.createElement("div");
+      div.className = "ball";
+      div.textContent = `${getLetter(n)}${n}`;
+      nums.appendChild(div);
+    });
 }
 
-
-// sorteia um número
+// sorteia um número que ainda não saiu e atualiza a tela
 function draw() {
-  // se já sorteou todos
   if (drawn.size === pool.length) {
     alert("Todos os números foram sorteados 🎉");
     btnDraw.disabled = true;
@@ -62,23 +52,17 @@ function draw() {
   }
 
   let n;
-  // sorteia um número que ainda não saiu
   do {
     n = pool[Math.floor(Math.random() * pool.length)];
   } while (drawn.has(n));
 
-  // adiciona ao conjunto de sorteados
   drawn.add(n);
-
-  // mostra o número atual
   currentNumber.textContent = `${getLetter(n)}${n}`;
-
-  // atualiza as bolinhas na tela
-  renderBalls();
+  renderNums();
 }
 
 // eventos do botão
-btnDraw.addEventListener("click", draw);  
+btnDraw.addEventListener("click", draw);
 
-// inicia
+// inicia o sorteador
 init();
