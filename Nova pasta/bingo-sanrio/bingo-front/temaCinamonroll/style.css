@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comic Relief", system-ui;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #4CB4F0;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+summary{
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  
+}
+
+nav details summary {
+  margin-left: 20px; 
+}
+
+nav details ul {
+  margin: 0;         
+  padding-left: 20px; 
+  list-style: none;
+}
+.sorteador {
+  margin: 40px auto 20px;
+  padding: 20px;
+  background-color: #FEFBBA;
+  border-radius: 12px;
+  max-width: 900px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.sorteador h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* HELLO KITTY IMG */
+.personagem {
+  position: absolute;
+  top: -55px;
+  right: -55px;
+  width: 200px;
+}
+
+/* BOTÕES */
+.btnSortear {
+  margin-bottom: 15px;
+  align-items: center;
+  text-align: center;
+}
+
+#bntSortearNovo{
+  background-color: #F6D4E3;
+}
+
+button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* NÚMERO ATUAL */
+.num{
+    font-size: 70px;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+}
+
+/* LISTA DE NÚMEROS */
+.historico {
+  margin: 20px auto;
+  background-color: #4CB4F0;
+  color: white;
+  border-radius: 16px;
+  padding: 30px;          
+  width: 95%;             
+  max-width: 900px;       
+  min-height: 200px;      
+  text-align: center;
+  font-size: 20px;        
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.historico h3 {
+  margin-bottom: 6px;
+}
+
+
+/* bolinhas */
+.bolinha{
+  background-color: rgb(255, 255, 255);
+  border-radius: 80px;
+  color: #000;
+  font-size: 22px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* container das bolinhas */
+#nums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* estilo base da bolinha */
+.nums {
+  width: 80px;   
+  height: 80px;  
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 24px;  /* maior número */
+  color: white;
+}
+
+
+
+/*  CARTELAS */ 
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 80px); /* 5 colunas */
+  grid-template-rows: repeat(6, 80px);    /* 1 linha para letras + 5 de números */
+  gap: 2px;
+  margin: 20px auto;
+  background: white;
+}
+
+/* Quadradinhos padrão */
+.bingo-card div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  border: 1px solid #000;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 20px;
+}
+
+/* Letras do topo (BINGO) */
+.bingo-card .header {
+  background-color: #B0DAEC; /* vermelho */
+  color: black;              /* letras pretas */
+  font-size: 28px;
+  font-weight: bold;
+  cursor: default;
+}
+
+/* Casa FREE */
+.bingo-card .free {
+  background: white url("./img.png") no-repeat center center;
+  background-size: 60%;
+  cursor: default;
+  font-size: 0;
+}
+
+.bingo-card :hover{
+  background-color: #dcf2ff;
+  transition: 0.30s;
+  border-radius: 30px;
+}
+
+/* Quando marcar um número */
+.bingo-card div.marked {
+  background-color: #FEFBBA;
+  color: black;
+}
+
+/* Centraliza tudo dentro da área principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Deixa a cartela centralizada */
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  grid-template-rows: repeat(6, 80px);
+  gap: 2px;
+  margin: 20px auto;      /* centraliza */
+  background: white;
+  justify-content: center; /* força centralização horizontal */
+}
+
+.controls{
+    text-align: center;
+}
+
+.card h1{
+    text-align: center;
+    margin-top: 100px;
+}
+
+footer{
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  padding: 50px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #4CB4F0;
+}
