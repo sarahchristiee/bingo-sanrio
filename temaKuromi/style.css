@@ -9,18 +9,26 @@
 
 main {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.first {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30vh;
+  margin-bottom: 10vh;
 }
 
 /* NAVBAR */
 .navbar {
-  background-color: #91cf15;
+  background-color: #8815cf;
   display: flex;
   align-items: center;
   padding: 12px 20px;
   gap: 20px;
-  margin-bottom: 70px;
 }
 
 .navbar a {
@@ -48,11 +56,19 @@ nav details ul {
 }
 
 /* SORTEADOR */
+.sorteioWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
 .sorteador {
   margin: 40px auto 20px;
   padding: 20px;
-  background-color: #ff2b2b;
+  background-color: #8815cf;
   width: 500px;
+  height: 300px;
   border-radius: 12px;
   text-align: center;
   position: relative;
@@ -81,7 +97,7 @@ nav details ul {
 }
 
 #btnSortearNovo {
-  background-color: #91cf15;
+  background-color: #e420d7;
   color: white;
   margin-bottom: 20px;
 }
@@ -112,6 +128,13 @@ button {
   background-color: #fff;
 }
 
+.historicoWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #historicoTable {
   margin: 20px auto;
   border-collapse: collapse;
@@ -124,7 +147,7 @@ button {
 }
 
 #historicoTable thead th {
-  background-color: #91cf15;
+  background-color: #e420d7;
   color: white;
   padding: 10px;
   font-weight: bold;
@@ -140,7 +163,7 @@ button {
 }
 
 #historicoTable tbody td.sorteado {
-  background-color: #91cf15;
+  background-color: #d38dfe;
   color: black;
   font-weight: bold;
 }
@@ -187,7 +210,7 @@ button {
 
 /* Letras do topo (BINGO) */
 .bingoCard .header {
-  background-color: #91cf15; 
+  background-color: #e420d7; 
   color: white;             
   font-size: 25px;
   font-weight: bold;
@@ -204,12 +227,12 @@ button {
 
 /* Quando marcar um número */
 .bingoCard div.marked {
-  background-color: #91cf15;
+  background-color: #d38dfe;
   color: black;
 }
 
 .numCartela:hover {
-  background-color: #15cf2b;
+  background-color: #8815cf;
   border-radius: 30px;
   transition: 0.5s;
 }
@@ -227,21 +250,4 @@ button {
 .bingar {
   margin-top: 20px;
   text-align: center;
-}
-
-/* Responsividade */
-
-@media (max-width: 700px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-  }
-  .sorteador, .card {
-    width: 90%;
-    margin-top: 30px;
-  }
-  .bingoCard {
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(6, 50px);
-  }
 }
