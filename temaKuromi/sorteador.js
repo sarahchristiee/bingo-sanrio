@@ -1,13 +1,14 @@
+// --- Sorteador ---
 // lista de números de 1 a 75
 const pool = Array.from({ length: 75 }, (_, i) => i + 1);
 let historicoNums = new Set();
 
-// pega elementos e fazer botãos
-const bntSortearNovo = document.querySelector("#bntSortearNovo");
+// elementos do DOM
+const btnSortearNovo = document.querySelector("#btnSortearNovo");
 const numAtual = document.querySelector("#numAtual");
-const nums = document.querySelector("#nums");
+const historicoTableBody = document.querySelector("#historicoTable tbody");
 
-// função para cada letra com seu conjunto de números
+// função que retorna a letra de acordo com o número
 function getLetras(n) {
   if (n <= 15) return "B";
   if (n <= 30) return "I";
@@ -16,91 +17,81 @@ function getLetras(n) {
   return "O"; // 61–75
 }
 
+// cria tabela fixa 15 linhas x 5 colunas para números de 1 a 75
+function criarTabelaHistorico() {
+  historicoTableBody.innerHTML = ""; // limpa tbody
 
-// mostra historico do sorteio
-function renderizarHistorico() {
-  nums.innerHTML = ""; // limpa antes
+  for (let row = 0; row < 15; row++) {
+    const tr = document.createElement("tr");
 
-  const letras = ["B", "I", "N", "G", "O"];
+    for (let col = 0; col < 5; col++) {
+      const td = document.createElement("td");
 
-  letras.forEach((letra, i) => {
-    // cria um container para cada letra
-    const coluna = document.createElement("div");
-    coluna.className = "coluna-letra";
+      // Calcula número baseado em coluna e linha
+      const numero = col * 15 + (row + 1);
 
-    // título da letra
-    const titulo = document.createElement("h3");
-    titulo.textContent = letra;
-    coluna.appendChild(titulo);
+      td.textContent = ""; // começa vazio
+      td.dataset.numero = numero; // armazena número na célula
 
-    // filtra só os números daquela letra
-    const min = i * 15 + 1;
-    const max = (i + 1) * 15;
-    const numsLetra = [...historicoNums]
-      .filter(n => n >= min && n <= max)
-      .sort((a, b) => a - b);
+      tr.appendChild(td);
+    }
 
-    // adiciona as bolinhas dessa letra
-    numsLetra.forEach(n => {
-      const div = document.createElement("div");
-      div.className = "bolinha";
-      div.textContent = `${letra}${n}`;
-      coluna.appendChild(div);
-    });
+    historicoTableBody.appendChild(tr);
+  }
+}
 
-    nums.appendChild(coluna);
+// atualiza a tabela exibindo os números sorteados
+function atualizarTabelaHistorico() {
+  historicoTableBody.querySelectorAll("td").forEach(td => {
+    const numero = Number(td.dataset.numero);
+    if (historicoNums.has(numero)) {
+      td.textContent = numero;
+      td.classList.add("sorteado");
+    } else {
+      td.textContent = "";
+      td.classList.remove("sorteado");
+    }
   });
 }
 
 // sorteia número novo
 function draw() {
-  //se todos os números forem sorteados entra nesse if
   if (historicoNums.size === pool.length) {
     alert("Todos os números foram sorteados 🎉");
-    bntSortearNovo.disabled = true;
+    btnSortearNovo.disabled = true;
     return;
   }
 
   let n;
   do {
-    n = pool[Math.floor(Math.random() * pool.length)]; // seleciona um número aleatório dentro do lenght do array pool
-  } while (historicoNums.has(n)); //continua enquanto não repetir
+    n = pool[Math.floor(Math.random() * pool.length)];
+  } while (historicoNums.has(n));
 
-  historicoNums.add(n); // add número que já foi pro histórico
-  numAtual.textContent = `${getLetras(n)}${n}`; //exibe o número que foi sorteado
-  renderizarHistorico(); //chama a função pra atualizar a exibição do historico
+  historicoNums.add(n);
+  numAtual.textContent = `${getLetras(n)}${n}`;
+  atualizarTabelaHistorico();
 }
 
-// reinicia o jogo
+// reinicia o sorteador
 function init() {
   historicoNums.clear();
   numAtual.textContent = "-";
-  nums.innerHTML = "";
-  bntSortearNovo.disabled = false;
+  btnSortearNovo.disabled = false;
+  criarTabelaHistorico();
+  atualizarTabelaHistorico();
 }
 
-// eventos, qnd clica executa
-bntSortearNovo.addEventListener("click", draw);
+btnSortearNovo.addEventListener("click", draw);
 
-// inicia
 init();
 
 
+// --- Cartela de Bingo ---
 
-
-
-
-
-
-
-
-// pega a área onde a cartela será desenhada (div com id="bingoCard")
 const bingoCard = document.getElementById("bingoCard");
-
-// pega o botão que gera uma nova cartela
 const btnGerar = document.getElementById("btnGerar");
 
-// função que gera uma lista de números aleatórios e únicos dentro de um intervalo
+// gera lista de números aleatórios únicos dentro do intervalo
 function getRandomNumbers(min, max, count) {
   const nums = [];
   while (nums.length < count) {
@@ -110,7 +101,7 @@ function getRandomNumbers(min, max, count) {
   return nums.sort((a, b) => a - b);
 }
 
-// função que monta a cartela
+// gera e desenha a cartela no DOM
 function generateCard() {
   bingoCard.innerHTML = "";
 
@@ -150,9 +141,6 @@ function generateCard() {
   }
 }
 
-// gera a primeira cartela automaticamente ao abrir a página
 generateCard();
 
-// quando clicar no botão, gera uma nova cartela
 btnGerar.addEventListener("click", generateCard);
-

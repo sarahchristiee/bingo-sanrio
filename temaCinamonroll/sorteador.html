@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
     <script defer src="./sorteador.js"></script>
-    <link rel="icon" type="image/png" sizes="16x16"  href="./img.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img.png" />
     <title>Bingo!</title>
 </head>
 <body>
 
-    <!-- menu -->
-
-    <nav class="navbar">
-        <details>
-          <summary>Temas</summary>
-          <ul>
-            <li><a href="../temaKuromi/sorteador.html">Kuromi</a></li>
-            <li><a href="../temaCinamonroll/sorteador.html">Cinamonroll</a></li>
-            <li><a href="../temaKeroppi/sorteador.html">Keroppi</a></li>
-            <li><a href="../temaHellokitty/sorteador.html">Hello Kitty</a></li>
-          </ul>
-        </details>
-    </nav>
+<nav class="navbar">
+    <details>
+      <summary>Temas</summary>
+      <ul>
+        <li><a href="../temaKuromi/sorteador.html">Kuromi</a></li>
+        <li><a href="../temaCinamonroll/sorteador.html">Cinamonroll</a></li>
+        <li><a href="../temaKeroppi/sorteador.html">Keroppi</a></li>
+        <li><a href="../temaHellokitty/sorteador.html">Hello Kitty</a></li>
+      </ul>
+    </details>
+</nav>
 
 <main>
-  <div class="sorteio">
-    <!-- numero sorteado -->
-     <div class="sorteador">
-        <img src="./img.png" alt="Imagem rosto personegem hellokitty" class="personagem">
-        <h1>Sorteador</h1>
+  <div class="sorteioWrapper">
+    <div class="sorteador">
+      <img src="./img.png" alt="Imagem rosto personegem hellokitty" class="personagemImg" />
+      <h1>Sorteador</h1>
 
-        <div class="btnSortear">
-            <button id="bntSortearNovo">Sortear novo número</button>
-        </div>
+      <div class="btnSortearWrapper">
+        <button id="btnSortearNovo">Sortear novo número</button>
+      </div>
 
-        <!-- div que vai aparecer o último num sorteado bem grnadee-->
-        <div class="atual">
-            <!-- traço para não começar zerado -->
-            <div id="numAtual" class="num">
-                -
-            </div>
-        </div>
-     </div>
-
-     <!-- histórico de sorteados -->
-      <div class="historico">
-        <h3>Números Sorteados</h3>
-        <div id="nums"></div>
+      <div class="atualWrapper">
+        <div id="numAtual" class="numAtual">-</div>
       </div>
     </div>
 
-      <div class="cartela">
-        <div class="card">
+    <div class="cartelaWrapper">
+      <div class="cardWrapper">
         <h1>Cartela de Bingo</h1>
-        <div id="bingoCard" class="bingo-card"></div>
-        <div class="controls"><button id="btnGerar">Gerar nova cartela</button></div>
-        </div> 
+        <div id="bingoCard" class="bingoCard"></div>
+        <div class="controlsWrapper">
+          <button id="btnGerar">Gerar nova cartela</button>
+        </div>
       </div>
+    </div>
 
+  </div>
+
+  <!-- Histórico agora fica aqui, abaixo -->
+  <div class="historicoWrapper">
+    <h2>Histórico de Números Sorteados</h2>
+    <table id="historicoTable">
+      <thead>
+        <tr>
+          <th>B</th>
+          <th>I</th>
+          <th>N</th>
+          <th>G</th>
+          <th>O</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- linhas fixas vão ser criadas pelo JS -->
+      </tbody>
+    </table>
+  </div>
 </main>
 
 </body>
